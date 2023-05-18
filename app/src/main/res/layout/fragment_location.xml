@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/location_root"
+    android:transitionName="fab_to_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".ui.weather.LocationFragment">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map_container"
+        android:name="edu.uw.tcss450.kylerr10.chatapp.ui.weather.MapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_map" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- NestedScrollingChild goes here (NestedScrollView, RecyclerView, etc.). -->
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000">
+
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/map_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/hint_location" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.search.SearchView
+            android:id="@+id/map_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_location"
+            app:layout_anchor="@id/map_search_bar">
+            <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+            <!--                tools:listitem="">-->
+            <!--            </androidx.recyclerview.widget.RecyclerView>-->
+        </com.google.android.material.search.SearchView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/save_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:text="@string/hint_save_location"
+        app:icon="@drawable/ic_add_onsurface_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        style="?attr/floatingActionButtonSmallStyle"
+        android:clickable="true"
+        android:src="@drawable/ic_list_onsurface_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/save_location_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/hint_list_locations" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/current_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        style="?attr/floatingActionButtonSmallStyle"
+        android:clickable="true"
+        android:src="@drawable/ic_location_onsurface_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/list_location_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/hint_current_location" />
+</androidx.constraintlayout.widget.ConstraintLayout>

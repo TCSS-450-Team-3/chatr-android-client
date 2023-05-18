@@ -3,6 +3,7 @@ package edu.uw.tcss450.kylerr10.chatapp.ui.chat;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.uw.tcss450.kylerr10.chatapp.ConversationActivity;
 import edu.uw.tcss450.kylerr10.chatapp.R;
+import edu.uw.tcss450.kylerr10.chatapp.model.UserInfoViewModel;
 
 /**
  * A simple {@link Fragment} subclass. This fragment displays a list of chat rooms
@@ -45,6 +47,10 @@ public class ChatFragment extends Fragment implements ChatRoomAdapter.OnChatRoom
             mChatRooms.add(new ChatRoom("Chat Room " + i, "Last message in Chat Room " + i));
 
         }
+        //Access JWT
+        UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
+        String jwt = model.getJWT().toString();
+        //Log.i("JWT", jwt);
 
         // Create a new ChatRoomAdapter and set it on the RecyclerView
         mAdapter = new ChatRoomAdapter(mChatRooms);

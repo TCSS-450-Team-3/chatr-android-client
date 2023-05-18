@@ -32,7 +32,14 @@
         android:id="@+id/homeActivity"
         android:name="edu.uw.tcss450.kylerr10.chatapp.MainActivity"
         android:label="activity_home"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_main" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="jwt"
+            app:argType="string" />
+    </activity>
     <fragment
         android:id="@+id/registerFragment"
         android:name="edu.uw.tcss450.kylerr10.chatapp.ui.auth.register.RegisterFragment"

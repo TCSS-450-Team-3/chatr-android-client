@@ -2,195 +2,220 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_root"
+    android:id="@+id/weather_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.weather.HourlyWeatherCardFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/weather_current_card"
-        android:layout_width="0dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/open_location_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:checkable="true"
-        app:cardUseCompatPadding="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_weather_current"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_current_city_state"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Tacoma, WA"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/image_weathericon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_current_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_current_location"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/text_current_city_state"
-                app:layout_constraintTop_toBottomOf="@+id/text_current_city_state" />
-
-            <TextView
-                android:id="@+id/text_current_temperature"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="48°F"
-                android:textSize="60sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_current_location" />
-
-            <ImageView
-                android:id="@+id/image_weathericon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_sunny_onsecondarycontainer_24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_weather_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Sunny"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="@+id/image_weathericon"
-                app:layout_constraintStart_toStartOf="@+id/image_weathericon"
-                app:layout_constraintTop_toBottomOf="@+id/image_weathericon" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/weather_hourly_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/weather_current_card"
-        app:layout_constraintStart_toStartOf="@+id/weather_current_card"
-        app:layout_constraintTop_toBottomOf="@+id/weather_current_card">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_hourly_weather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/text_hourly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_hourly_forecast"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_weather_hourly"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                app:layoutManager="LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_hourly"
-                tools:listitem="@layout/fragment_hourly_weather_card" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/weather_daily_card"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/hint_open_location"
+        android:src="@drawable/ic_map_onsurface_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/weather_hourly_card"
-        app:layout_constraintStart_toStartOf="@+id/weather_hourly_card"
-        app:layout_constraintTop_toBottomOf="@+id/weather_hourly_card">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_daily_weather"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/text_daily"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_daily_forecast"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_weather_daily"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                app:layoutManager="LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_daily"
-                app:layout_constraintVertical_bias="0.0"
-                tools:listitem="@layout/fragment_daily_weather_card" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/weather_current_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:checkable="true"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    app:cardCornerRadius="12dp"
+                    app:cardUseCompatPadding="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_weather_current"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="60dp"-->
-    <!--        android:layout_marginStart="32dp"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:layout_marginEnd="32dp"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        app:layoutManager="LinearLayoutManager"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/image_weather_preview_current"-->
-    <!--        tools:listitem="@layout/fragment_hourly_weather_card"/>-->
+                        <TextView
+                            android:id="@+id/text_current_city_state"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_current_location"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/title_current_location"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            app:layout_constraintStart_toStartOf="@+id/text_current_city_state"
+                            app:layout_constraintTop_toBottomOf="@+id/text_current_city_state" />
+
+                        <TextView
+                            android:id="@+id/text_current_temperature"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="- - °"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textSize="48dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_current_location" />
+
+                        <ImageView
+                            android:id="@+id/image_weathericon"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:visibility="invisible"
+                            android:src="@drawable/ic_sunny_onsecondarycontainer_24dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_weather_description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/image_weathericon"
+                            app:layout_constraintStart_toStartOf="@+id/image_weathericon"
+                            app:layout_constraintTop_toBottomOf="@+id/image_weathericon" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/weather_hourly_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="12dp"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    app:layout_constraintEnd_toEndOf="@+id/weather_current_card"
+                    app:layout_constraintStart_toStartOf="@+id/weather_current_card"
+                    app:layout_constraintTop_toBottomOf="@+id/weather_current_card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_hourly_weather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/text_hourly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/title_hourly_forecast"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView_weather_hourly"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal"
+                            app:layoutManager="LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_hourly"
+                            tools:listitem="@layout/fragment_hourly_weather_card" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/weather_daily_card"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="90dp"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/weather_hourly_card"
+                    app:layout_constraintStart_toStartOf="@+id/weather_hourly_card"
+                    app:layout_constraintTop_toBottomOf="@+id/weather_hourly_card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_daily_weather"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/text_daily"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/title_daily_forecast"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView_weather_daily"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:nestedScrollingEnabled="false"
+                            app:layoutManager="LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_daily"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:listitem="@layout/fragment_daily_weather_card" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

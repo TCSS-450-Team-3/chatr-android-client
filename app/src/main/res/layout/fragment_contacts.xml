@@ -33,7 +33,7 @@
                 android:layout_height="match_parent">
 
                 <SearchView
-                    android:id="@+id/searchView"
+                    android:id="@+id/map_search_view"
                     style="@style/NoUnderlineSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

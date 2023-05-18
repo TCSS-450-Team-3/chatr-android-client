@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_root"
-    android:layout_width="56dp"
+    android:layout_width="48dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="4dp"
+    app:cardBackgroundColor="@color/transparent"
+    app:cardElevation="0dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,18 +15,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/text_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- -"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintEnd_toStartOf="@+id/text_meridiem"
+            app:layout_constraintStart_toStartOf="@+id/image_weather_preview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_meridiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- -"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintBottom_toBottomOf="@+id/text_hour"
+            app:layout_constraintEnd_toEndOf="@+id/image_weather_preview"
+            app:layout_constraintStart_toEndOf="@+id/text_hour" />
 
         <ImageView
             android:id="@+id/image_weather_preview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintDimensionRatio="1:1"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_time"
+            app:layout_constraintTop_toBottomOf="@+id/text_hour"
             app:srcCompat="@drawable/ic_sunny_onsecondarycontainer_24dp" />
 
         <TextView
@@ -32,23 +53,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
-            android:text="99°"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="- - °"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/text_time"
-            app:layout_constraintStart_toStartOf="@+id/text_time"
-            app:layout_constraintTop_toBottomOf="@+id/image_weather_preview" />
-
-        <TextView
-            android:id="@+id/text_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="12 PM"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="@+id/image_weather_preview"
             app:layout_constraintStart_toStartOf="@+id/image_weather_preview"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/image_weather_preview" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
