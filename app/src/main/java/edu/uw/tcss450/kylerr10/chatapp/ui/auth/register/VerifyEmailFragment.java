@@ -32,14 +32,21 @@ import edu.uw.tcss450.kylerr10.chatapp.databinding.FragmentVerifyEmailBinding;
  *
  * @author Kyler Robison, Betelhem
  */
-public class VerifyEmailFragment extends Fragment {
 
+public class VerifyEmailFragment extends Fragment {
     private FragmentVerifyEmailBinding mBinding;
     private String email;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public VerifyEmailFragment() {
+        // Required empty public constructor
+    }
+
+    public static VerifyEmailFragment newInstance(String email) {
+        VerifyEmailFragment fragment = new VerifyEmailFragment();
+        Bundle args = new Bundle();
+        args.putString("email", email);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -48,25 +55,23 @@ public class VerifyEmailFragment extends Fragment {
         // Inflate the layout using the binding object
         mBinding = FragmentVerifyEmailBinding.inflate(inflater, container, false);
         // Return the root view from the binding object
-        return mBinding.getRoot();
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d("VerificationFragment", "onViewCreated called");
-        super.onViewCreated(view, savedInstanceState);
-        String url = "http://10.0.2.2:5000/verify/verify-otp";
 
         Bundle bundle = getArguments();
         if (bundle != null && bundle.containsKey("email")) {
-            String email = bundle.getString("email");
-            setEmail(email);
+            email = bundle.getString("email"); // Assign value to the instance variable
         }
+        return mBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        String url = "http://10.0.2.2:5000/verify/verify-otp";
+
         mBinding.buttonVerify.setOnClickListener(button -> {
             String otpCode = mBinding.editCode.getText().toString();
-            Log.d("VerificationFragment", "OTP Code: " + otpCode);
-            Log.d("VerificationFragment", "Email: " + email);
+            Log.d("VerifyEmailFragment", "OTP Code: " + otpCode);
+            Log.d("VerifyEmailFragment", "Email: " + email);
             // Create the request body
             JSONObject requestBody = new JSONObject();
             try {
@@ -77,7 +82,7 @@ public class VerifyEmailFragment extends Fragment {
             }
             Log.e("Request Body", requestBody.toString());
             // Make a request to verify the OTP code
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, requestBody,
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -109,10 +114,92 @@ public class VerifyEmailFragment extends Fragment {
             Volley.newRequestQueue(requireContext()).add(request);
         });
     }
-
-    public void setEmail(String email) {
-        Log.d("VerificationFragment", "setEmail invoked with email: " + email);
-        this.email = email;
-    }
 }
+
+//public class VerifyEmailFragment extends Fragment {
+//
+//    private FragmentVerifyEmailBinding mBinding;
+//    private String email;
+//
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//    }
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout using the binding object
+//        mBinding = FragmentVerifyEmailBinding.inflate(inflater, container, false);
+//        // Return the root view from the binding object
+//
+//        Bundle bundle = getArguments();
+//        if (bundle != null && bundle.containsKey("email")) {
+//            email = bundle.getString("email"); // Assign value to the instance variable
+//        }
+//        return mBinding.getRoot();
+//    }
+//
+//
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        Log.d("VerifyEmailFragment", "onViewCreated called");
+//        super.onViewCreated(view, savedInstanceState);
+//        String url = "http://10.0.2.2:5000/verify/verify-otp";
+//
+//
+//        mBinding.buttonVerify.setOnClickListener(button -> {
+//            String otpCode = mBinding.editCode.getText().toString();
+//            Log.d("VerifyEmailFragment", "OTP Code: " + otpCode);
+//            Log.d("VerifyEmailFragment", "Email: " + email);
+//            // Create the request body
+//            JSONObject requestBody = new JSONObject();
+//            try {
+//                requestBody.put("email", email);
+//                requestBody.put("otp", otpCode);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            Log.e("Request Body", requestBody.toString());
+//            // Make a request to verify the OTP code
+//            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+//                    new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            // OTP code verified successfully
+//                            Toast.makeText(requireContext(), "OTP verified successfully", Toast.LENGTH_SHORT).show();
+//                            Log.d("Response", response.toString());
+//                            // Proceed to the home fragment
+//                            Navigation.findNavController(requireView()).navigate(R.id.action_verifyEmailFragment_to_homeActivity);
+//                        }
+//                    },
+//                    new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            Toast.makeText(requireContext(), "Failed to verify OTP", Toast.LENGTH_SHORT).show();
+//                            Log.e("Volley", error.toString());
+//                        }
+//                    }
+//            ){
+//                @Override
+//                public Map<String, String> getHeaders() {
+//                    Map<String, String> headers = new HashMap<>();
+//                    // Add authentication headers
+//                    headers.put("Authorization", "Bearer Chat&%$key8329dogsrule");
+//                    return headers;
+//                }
+//
+//
+//            };
+//
+//            // Add the request to the request queue
+//            Volley.newRequestQueue(requireContext()).add(request);
+//        });
+//    }
+//
+//    public void setEmail(String email) {
+//        Log.d("VerifyEmailFragment", "setEmail invoked with email: " + email);
+//        this.email = email;
+//    }
+//}
 
